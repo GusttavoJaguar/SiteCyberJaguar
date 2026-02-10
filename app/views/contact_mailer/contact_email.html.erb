@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>💰 NOVA SOLICITAÇÃO DE ORÇAMENTO</h2>
+    
+    <div style="background-color: #f4f4f4; padding: 20px; border-radius: 5px;">
+      <p><strong>👤 Nome:</strong> <%= @contact[:name] || @contact['name'] %></p>
+      <p><strong>📧 Email:</strong> <%= @contact[:email] || @contact['email'] %></p>
+      <% if @contact.respond_to?(:phone) && @contact[:phone].present? %>
+        <p><strong>📱 Telefone:</strong> <%= @contact[:phone] || @contact['phone'] %></p>
+      <% end %>
+      <p><strong>📌 Assunto:</strong> <%= @contact[:subject] || @contact['subject'] %></p>
+      <p><strong>🛠️ Tipo de Serviço:</strong> <%= @contact[:service_type] || @contact['service_type'] %></p>
+      <p><strong>📝 Mensagem:</strong></p>
+      <div style="background-color: white; padding: 15px; border-left: 4px solid #007bff; margin: 10px 0;">
+        <p><%= @contact[:message] || @contact['message'] %></p>
+      </div>
+    </div>
+    
+    <hr style="margin: 30px 0;">
+    
+    <p><small>Enviado em: <%= Time.current.strftime('%d/%m/%Y %H:%M') %></small></p>
+  </body>
+</html>

@@ -1,0 +1,2058 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Jaguar - Soluções em T.I.</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cyber-cyan: #00F0FF;
+            --cyber-magenta: #FF00FF;
+            --cyber-black: #050505;
+            --cyber-purple: #2D004B;
+            --cyber-dark: #0a0a0f;
+            --cyber-gray: #1a1a2e;
+            --cyber-light: #e0e0ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--cyber-black);
+            color: #fff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+        }
+        
+        /* Efeitos neon e brilho */
+        .neon-cyan {
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 10px var(--cyber-cyan), 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+        
+        .neon-magenta {
+            color: var(--cyber-magenta);
+            text-shadow: 0 0 10px var(--cyber-magenta), 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        
+        .neon-border-cyan {
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+        
+        .neon-border-magenta {
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
+        }
+        
+        .neon-glow {
+            animation: neonGlow 2s infinite alternate;
+        }
+        
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 5px var(--cyber-cyan), 0 0 10px var(--cyber-cyan);
+            }
+            to {
+                text-shadow: 0 0 10px var(--cyber-cyan), 0 0 20px var(--cyber-cyan), 0 0 30px var(--cyber-cyan);
+            }
+        }
+        
+        /* Header */
+        .navbar {
+            background-color: rgba(5, 5, 5, 0.95) !important;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--cyber-cyan) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .navbar-brand i {
+            color: var(--cyber-magenta);
+            font-size: 2rem;
+        }
+        
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+            color: var(--cyber-cyan) !important;
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));
+            transition: width 0.3s;
+        }
+        
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0 50px;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(45, 0, 75, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 5rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--cyber-light);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+        
+        .btn-neon {
+            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));
+            color: var(--cyber-black);
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-neon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.4);
+            color: var(--cyber-black);
+        }
+        
+        /* Cards de Serviços */
+        .service-card {
+            background-color: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--cyber-cyan);
+        }
+        
+        /* Sobre */
+        .about-section {
+            padding: 100px 0;
+            background-color: rgba(10, 10, 15, 0.5);
+            position: relative;
+        }
+        
+        .mascot-container {
+            position: relative;
+            text-align: center;
+        }
+        
+        .mascot-img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            border: 2px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .mascot-label {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgba(45, 0, 75, 0.7);
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--cyber-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        
+        /* Portfólio */
+        .portfolio-section {
+            padding: 100px 0;
+        }
+        
+        .portfolio-card {
+            background-color: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .portfolio-tag {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--cyber-cyan);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        /* Contato */
+        .contact-section {
+            padding: 100px 0;
+            background-color: rgba(10, 10, 15, 0.5);
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            background-color: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: #fff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            background-color: rgba(26, 26, 46, 0.9);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            color: #fff;
+            outline: none;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-info-icon {
+            font-size: 1.5rem;
+            color: var(--cyber-cyan);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: rgba(5, 5, 5, 0.95);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--cyber-cyan);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links h5 {
+            color: var(--cyber-cyan);
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cyber-cyan);
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+            color: var(--cyber-cyan);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--cyber-cyan);
+            color: var(--cyber-black);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Efeitos de scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Seções ocultas inicialmente */
+        .page-section {
+            display: none;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Animações de partículas no fundo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: var(--cyber-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(100px); }
+            50% { transform: translateY(0) translateX(200px); }
+            75% { transform: translateY(100px) translateX(100px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-user-ninja"></i> CYBER JAGUAR
+        </a>
+        
+        <button class="navbar-toggler neon-border-cyan" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-page="home">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="services">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="about">Sobre</a> <!-- CORRIGIDO -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="portfolio">Portfólio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-page="contact">Contato</a>
+                </li>
+            </ul>
+            
+            <a href="#" class="btn btn-neon ms-lg-3 mt-3 mt-lg-0" data-page="contact">Orçamento Online</a>
+        </div>
+    </div>
+</nav>
+    
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Página Inicial -->
+        <section id="home" class="page-section active">
+            <div class="hero-section">
+                <div class="hero-bg"></div>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6"><br><br>
+                            <div class="hero-badge mb-4 p-3 neon-border-cyan d-inline-block">
+                                <i class="fas fa-bolt me-2"></i> SOLUÇÕES EM TECNOLOGIA
+                            </div>
+                            
+                            <h1 class="hero-title neon-glow">
+                                ATUALIZE SUA <span class="neon-magenta">REALIDADE</span>
+                            </h1>
+                            
+                            <p class="hero-subtitle">
+                                Tenha mais facilidade na hora de contratar serviços de hardware, software, redes e marketing digital, 
+                                com o melhor custo benefício na área da tecnologia da informação.
+                            </p>
+                            
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-neon me-3 mb-3" data-page="services">
+                                    <i class="fas fa-rocket me-2"></i> Nossos Serviços
+                                </a>
+                                <a href="#" class="btn btn-outline-light mb-3" data-page="portfolio">
+                                    <i class="fas fa-eye me-2"></i> Ver Portfólio
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="text-center mt-5 mt-lg-0">
+                                <div class="position-relative d-inline-block">
+                                    <img src="/images/jaguar.png" 
+                                         alt="Tecnologia" class="img-fluid rounded-3 neon-border-cyan">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100" 
+                                         style="background: linear-gradient(90deg, rgba(0,240,255,0.1), rgba(255,0,255,0.1)); border-radius: 12px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Página Serviços -->
+        <section id="services" class="page-section">
+            <div class="container py-5"><br><br><br><br>
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="display-4 fw-bold neon-cyan mb-3">NOSSOS SERVIÇOS</h2>
+                    <p class="lead">Oferecemos soluções completas em tecnologia para sua empresa</p>
+                    <div class="mx-auto" style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));"></div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Hardware</h3>
+                            <p class="mb-4">Trabalhos com manutenção preventiva e corretiva em desktops e laptops. Diagnóstico especializado e substituição de componentes com peças de qualidade.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Manutenção de computadores</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Substituição de componentes</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Otimização de performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Software</h3>
+                            <p class="mb-4">Ativação e instalação de programas, segurança e restaurações. Configuração de sistemas operacionais, antivírus e soluções de backup.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Instalação de sistemas</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Configuração de antivírus</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Soluções de backup</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Redes</h3>
+                            <p class="mb-4">Configurações em redes wi-fi e cabeadas. Instalação de roteadores, switches, segurança de rede e otimização de conexão para máxima performance.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Configuração de redes</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Segurança de rede</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Otimização de conexão</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Marketing Digital</h3>
+                            <p class="mb-4">Criação de sites e blogs, tráfego pago e criação de conteúdos em mídias sociais. Estratégias personalizadas para aumentar sua presença online.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Criação de sites</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Gestão de mídias sociais</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Tráfego pago</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Segurança Cibernética</h3>
+                            <p class="mb-4">Proteção de dados, análise de vulnerabilidades, implementação de firewalls e soluções de segurança personalizadas para sua empresa.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Análise de vulnerabilidades</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Implementação de firewalls</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Proteção de dados</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="neon-cyan mb-3">Cloud Computing</h3>
+                            <p class="mb-4">Migração para nuvem, implementação de infraestrutura escalável e gestão de ambientes cloud com segurança e performance.</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Migração para nuvem</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Infraestrutura escalável</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Gestão de ambientes cloud</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5 fade-in">
+                    <a href="#" class="btn btn-neon btn-lg" data-page="contact">
+                        <i class="fas fa-calendar-check me-2"></i> Solicitar Orçamento
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+<!-- Página Sobre -->
+<section id="about" class="page-section">
+    <div class="about-section">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="display-4 fw-bold neon-cyan mb-3">MINHA JORNADA NA TECNOLOGIA</h2>
+                <p class="lead">5 anos transformando ideias em soluções digitais</p>
+                <div class="mx-auto" style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));"></div>
+            </div>
+            
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-in">
+                    <h3 class="neon-cyan mb-4">Do treinamento ao conhecimento</h3>
+                    
+                    <p class="mb-4">Há <strong class="neon-magenta">5 anos</strong> mergulhei no universo da Tecnologia da Informação, começando como <strong>estagiário</strong> em uma empresa de infraestrutura. Essa experiência inicial foi fundamental para construir uma base sólida e entender na prática como a tecnologia pode resolver problemas reais.</p>
+                    
+                    <p class="mb-4">Com dedicação e aprendizado contínuo, evolui para a posição de <strong>Analista</strong>, onde pude trabalhar em projetos complexos, desde a concepção e manutenção, até a implementação de soluções tecnológicas para empresas de diversos portes. Foi nessa fase que percebi o poder transformador da TI quando aplicada estrategicamente.</p>
+                    
+                    <div class="service-card p-4 mb-4 neon-border-cyan">
+                        <h4 class="neon-magenta mb-3"><i class="fas fa-certificate me-2"></i> Certificações e Especializações</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <i class="fas fa-microchip neon-cyan me-2"></i> Hardware e Infraestrutura
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <i class="fas fa-code neon-cyan me-2"></i> Programação Full Stack
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <i class="fas fa-shield-alt neon-cyan me-2"></i> Segurança da Informação
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <i class="fas fa-network-wired neon-cyan me-2"></i> Redes e Conectividade
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="neon-magenta mt-5 mb-3">Consultoria para Pequenos Empreendedores</h4>
+                    <p class="mb-4">Hoje, atuo como <strong>consultor especializado em T.I.</strong>, com foco em ajudar <strong>pequenos empreendedores</strong> a alavancarem seus negócios através da transformação digital. Minha missão é descomplicar a tecnologia, tornando-a acessível e estratégica para empresas que buscam crescer no mercado digital.</p>
+                    
+                    <p class="mb-4">Acredito que a <strong>adaptação tecnológica</strong> é o principal motor para a evolução empresarial. Por isso, desenvolvo soluções personalizadas que permitem aos empreendedores:</p>
+                    
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="fas fa-rocket neon-cyan me-2"></i>
+                            <strong>Prospectar novos clientes</strong> com ferramentas digitais eficientes
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-chart-line neon-cyan me-2"></i>
+                            <strong>Administrar seus negócios</strong> com sistemas otimizados
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-comments neon-cyan me-2"></i>
+                            <strong>Receber feedbacks valiosos</strong> de clientes para melhorias contínuas
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-sync-alt neon-cyan me-2"></i>
+                            <strong>Evoluir constantemente</strong> através da adaptação tecnológica
+                        </li>
+                    </ul>
+                    
+                    <div class="service-card p-4 mt-4 neon-border-magenta">
+                        <h5 class="neon-cyan mb-3"><i class="fas fa-lightbulb me-2"></i> Minha Filosofia</h5>
+                        <p class="mb-0">"Na era digital, <strong>adaptar-se não é uma opção, é uma necessidade</strong>. Meu trabalho vai além de implementar tecnologia - é sobre criar pontes entre o mundo digital e os objetivos do seu negócio, garantindo que cada solução não apenas funcione, mas também acelere seu crescimento e potencialize seus resultados."</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 fade-in">
+                    <div class="mascot-container">
+                        <div class="position-relative">
+                            <img src="/images/jag.png" alt="Ninja - Mascote da Cyber Jaguar" class="mascot-img">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" 
+                                 style="background: linear-gradient(90deg, rgba(0,240,255,0.1), rgba(255,0,255,0.1)); border-radius: 20px;"></div>
+                        </div>
+                        
+                        <p class="mt-3 mb-4">Assim como um ninja se adapta a qualquer situação com agilidade e precisão, minha abordagem em consultoria de T.I. é focada em soluções rápidas, eficientes e personalizadas para cada desafio empresarial.</p>
+                        
+                        <div class="row mt-5">
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center p-3 service-card">
+                                    <i class="fas fa-briefcase fa-2x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">5 Anos</h5>
+                                    <p class="mb-0">Experiência em T.I.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center p-3 service-card">
+                                    <i class="fas fa-project-diagram fa-2x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">+50 Projetos</h5>
+                                    <p class="mb-0">Implementados</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center p-3 service-card">
+                                    <i class="fas fa-user-tie fa-2x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">Consultoria</h5>
+                                    <p class="mb-0">Personalizada</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="text-center p-3 service-card">
+                                    <i class="fas fa-graduation-cap fa-2x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">4 Áreas</h5>
+                                    <p class="mb-0">Certificadas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 fade-in">
+                <div class="col-12">
+                    <div class="service-card p-5 text-center">
+                        <h3 class="neon-cyan mb-4">Como Posso Ajudar Seu Negócio?</h3>
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="p-3">
+                                    <i class="fas fa-laptop-code fa-3x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">Desenvolvimento</h5>
+                                    <p>Sistemas, sites e aplicativos personalizados para suas necessidades específicas</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="p-3">
+                                    <i class="fas fa-cogs fa-3x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">Otimização</h5>
+                                    <p>Melhoria de processos existentes com tecnologia para ganho de eficiência</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="p-3">
+                                    <i class="fas fa-chart-pie fa-3x neon-magenta mb-3"></i>
+                                    <h5 class="neon-cyan">Estratégia Digital</h5>
+                                    <p>Planejamento tecnológico para crescimento sustentável do seu negócio</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <a href="#" class="btn btn-neon btn-lg me-3 mb-3" data-page="services">
+                                <i class="fas fa-tools me-2"></i> Conheça Meus Serviços
+                            </a>
+                            <a href="#" class="btn btn-outline-light btn-lg mb-3" data-page="contact">
+                                <i class="fas fa-handshake me-2"></i> Vamos Conversar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
+<!-- Página Portfólio -->
+<section id="portfolio" class="page-section">
+        <div class="portfolio-section">
+            <div class="container py-5">
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="display-4 fw-bold neon-cyan mb-3">PORTFÓLIO TECNOLÓGICO</h2>
+                    <p class="lead">Projetos desenvolvidos com inovação e expertise técnica</p>
+                    <div class="mx-auto" style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));"></div>
+                </div>
+                
+                <div class="row g-5 justify-content-center">
+                    <!-- Projeto 1 - Site Profissional -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/layouts.png" 
+                                        alt="Site Profissional" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Layouts</h4>
+                                        <p class="small">Site institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Sites Profissionais Corporativos</h4>
+                                <p class="mb-3">Desenvolvimento completo de sites institucionais para empresa de tecnologia, com design responsivo, blog integrado e sistema de contato avançado.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="#" data-page="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Acessar Layouts
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 2 - Análise de Dados -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/analis.png" 
+                                        alt="Análise de Dados" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">Insights</h4>
+                                        <p class="small">Dashboard analítico</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-chart-bar"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">Plataforma Análise de Dados com Web Scraping</h4>
+                                <p class="mb-3">Sistema de dashboard com dados extraídos via webscraping para análise de dados com visualizações em tempo real baixando as informações como backup.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">Python</span>
+                                    <span class="portfolio-tag">Pandas</span>
+                                    <span class="portfolio-tag">Numpy</span>
+                                    <span class="portfolio-tag">Beautifulsoup</span>
+                                    <span class="portfolio-tag">Jupyter</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://datainsight-exemplo.com" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Ver Demo
+                                    </a>
+                                    <a href="https://github.com/exemplo/datainsight" target="_blank" class="btn btn-sm btn-outline-light flex-grow-1">
+                                        <i class="fab fa-github me-1"></i> Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 3 - Bots -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/bot.png" 
+                                        alt="Chatbot" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Automação de tarefas</h4>
+                                        <p class="small">Bot personalizado</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-robot"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Sistema de RPA</h4>
+                                <p class="mb-3">Desenvolvimento de bots personalizados, automação de processos e integração com sistemas.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">Python</span>
+                                    <span class="portfolio-tag">PyautoGUI</span>
+                                    <span class="portfolio-tag">Selenium</span>
+                                    <span class="portfolio-tag">Pandas</span>
+                                    <span class="portfolio-tag">Numpy</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    
+                                    <a href="https://github.com/exemplo/autobot" target="_blank" class="btn btn-sm btn-outline-light flex-grow-1">
+                                        <i class="fab fa-github me-1"></i> Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 4 - E-commerce 
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                                        alt="E-commerce" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">ShopTech Store</h4>
+                                        <p class="small">Plataforma e-commerce</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-shopping-cart"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">Loja Virtual Completa</h4>
+                                <p class="mb-3">Desenvolvimento de e-commerce com sistema de pagamento integrado, gestão de estoque e painel administrativo avançado.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">React</span>
+                                    <span class="portfolio-tag">Node.js</span>
+                                    <span class="portfolio-tag">MongoDB</span>
+                                    <span class="portfolio-tag">Stripe API</span>
+                                    <span class="portfolio-tag">Redux</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://shoptech-exemplo.com" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Loja
+                                    </a>
+                                    <a href="https://github.com/exemplo/shoptech" target="_blank" class="btn btn-sm btn-outline-light flex-grow-1">
+                                        <i class="fab fa-github me-1"></i> Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    <!-- Projeto 5 - Blog Eventos -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/blog.png" 
+                                        alt="App Mobile" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Blog Eventos</h4>
+                                        <p class="small">Aplicativo de produtividade</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-mobile-alt"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Blog de Eventos com página de administrador</h4>
+                                <p class="mb-3">Desenvolvimento de aplicativo para gestão de tarefas e projetos com sincronização em nuvem e notificações push.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">Ruby</span>
+                                    <span class="portfolio-tag">Ruby on Rails</span>
+                                    <span class="portfolio-tag">Devise</span>
+                                    <span class="portfolio-tag">PostgreSQL</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://shoptech-exemplo.com" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Blog
+                                    </a>
+                                    <a href="https://github.com/exemplo/shoptech" target="_blank" class="btn btn-sm btn-outline-light flex-grow-1">
+                                        <i class="fab fa-github me-1"></i> Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 6 - API Rest 
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" 
+                                        alt="API Rest" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">SecureAPI Gateway</h4>
+                                        <p class="small">API de integração</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-server"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">API REST para Integração de Sistemas</h4>
+                                <p class="mb-3">Desenvolvimento de API RESTful com autenticação JWT, documentação Swagger e sistema de versionamento.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">Node.js</span>
+                                    <span class="portfolio-tag">Express</span>
+                                    <span class="portfolio-tag">JWT</span>
+                                    <span class="portfolio-tag">Swagger</span>
+                                    <span class="portfolio-tag">PostgreSQL</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://api.exemplo.com/docs" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-book me-1"></i> Documentação
+                                    </a>
+                                    <a href="https://github.com/exemplo/secureapi" target="_blank" class="btn btn-sm btn-outline-light flex-grow-1">
+                                        <i class="fab fa-github me-1"></i> Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                
+                <!-- Seção de Novos Projetos -->
+                <div class="row mt-5 fade-in">
+                    <div class="col-12">
+                        <div class="laptop-card special-card text-center p-5">
+                            <div class="laptop-icon">
+                                <i class="fas fa-laptop-code fa-4x neon-cyan mb-4"></i>
+                            </div>
+                            <h3 class="neon-magenta mb-3">Próximos Projetos em Desenvolvimento</h3>
+                            <p class="mb-4">Estou sempre trabalhando em novas soluções tecnológicas. Em breve, mais projetos inovadores serão adicionados ao portfólio!</p>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-brain fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">IA Generativa</h6>
+                                        <p class="small">Sistemas com inteligência artificial</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-shield-alt fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">Cyber Security</h6>
+                                        <p class="small">Soluções de segurança avançada</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-brain fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">IA, Análise de dados e Automações</h6>
+                                        <p class="small">Fluidez no fluxo de trabalho e filtro de informações</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-neon btn-lg me-3 mb-3" data-page="contact">
+                                    <i class="fas fa-lightbulb me-2"></i> Tem uma Ideia?
+                                </a>
+                                <a href="#" class="btn btn-outline-light btn-lg mb-3" data-page="services">
+                                    <i class="fas fa-cogs me-2"></i> Ver Serviços
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Página Layouts -->
+  <section id="layout" class="page-section">
+        <div class="portfolio-section">
+            <div class="container py-5">
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="display-4 fw-bold neon-cyan mb-3">Layouts</h2>
+                    <p class="lead">Modelos desenvolvidos com inovação e expertise técnica</p>
+                    <div class="mx-auto" style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));"></div>
+                </div>
+                
+                <div class="row g-5 justify-content-center">
+                    <!-- Projeto 1 - Site Profissional -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/imob.png" 
+                                        alt="Site Profissional" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">Credibilidade e prospecção</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Imobiliária</h4>
+                                <p class="mb-3">Desenvolvimento completo de site para imobiliária, com catálogo de imóveis integrado, design responsivo e sistema de contato avançado para captação de leads.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://dazzling-griffin-0a4810.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 2 - Análise de Dados -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/ong.png" 
+                                        alt="Análise de Dados" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Doações e contato</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">Blog ONG</h4>
+                                <p class="mb-3">Criação de site institucional com blog integrado para ONG, com design responsivo e formulários avançados para voluntariado e doações.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://celadon-crisp-6f2755.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 3 - Bots -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/instr.png" 
+                                        alt="Chatbot" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">Encomendas e orçamentos</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Loja de instrumentos</h4>
+                                <p class="mb-3">Site completo para loja de instrumentos, com design responsivo, catálogo de produtos integrado e sistema de contato e orçamento avançado.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://euphonious-heliotrope-2d18ce.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 4 - E-commerce -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/fem.png" 
+                                        alt="E-commerce" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Loja Web</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">Moda feminina</h4>
+                                <p class="mb-3">Desenvolvimento de loja virtual completa, com design responsivo, plataforma de e-commerce integrada e sistema de gestão de pedidos.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://euphonious-heliotrope-2d18ce.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 5 - App Mobile -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/tattoo.png" 
+                                        alt="App Mobile" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-magenta mb-2">Localização e agendamento</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                               <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-cyan mb-3">Tatuagens</h4>
+                                <p class="mb-3">Site institucional para estúdio de tatuagens, com design responsivo, portfólio integrado e sistema de contato e agendamento avançado.</p>
+                                
+                               <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://euphonious-heliotrope-2d18ce.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Projeto 6 - API Rest -->
+                    <div class="col-lg-4 col-md-6 fade-in">
+                        <div class="laptop-card">
+                            <div class="laptop-screen">
+                                <div class="screen-content">
+                                    <img src="/images/adm.png" 
+                                        alt="API Rest" class="screen-img">
+                                    <div class="screen-overlay">
+                                        <h4 class="neon-cyan mb-2">Sistemas burocráticos</h4>
+                                        <p class="small">Layout institucional responsivo</p>
+                                    </div>
+                                </div>
+                                <div class="screen-frame"></div>
+                                <div class="camera"></div>
+                            </div>
+                            
+                            <div class="laptop-base">
+                                <div class="keyboard">
+                                    <div class="keyboard-keys"></div>
+                                </div>
+                                <div class="touchpad"></div>
+                                <div class="brand-logo">
+                                    <i class="fas fa-laptop-code"></i> CYBER JAGUAR
+                                </div>
+                            </div>
+                            
+                            <div class="laptop-content">
+                                <h4 class="neon-magenta mb-3">Administrativos</h4>
+                                <p class="mb-3">Site corporativo para empresa do setor administrativo, com design responsivo, blog institucional integrado e sistema de contato e orçamento profissional.</p>
+                                
+                                <div class="portfolio-tags mb-3">
+                                    <span class="portfolio-tag">HTML5</span>
+                                    <span class="portfolio-tag">CSS3</span>
+                                    <span class="portfolio-tag">JavaScript</span>
+                                    <span class="portfolio-tag">Bootstrap</span>
+                                </div>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="https://euphonious-heliotrope-2d18ce.netlify.app/" target="layout" target="_blank" class="btn btn-sm btn-neon flex-grow-1">
+                                        <i class="fas fa-external-link-alt me-1"></i> Visitar Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção de Novos Projetos -->
+                <div class="row mt-5 fade-in">
+                    <div class="col-12">
+                        <div class="laptop-card special-card text-center p-5">
+                            <div class="laptop-icon">
+                                <i class="fas fa-laptop-code fa-4x neon-cyan mb-4"></i>
+                            </div>
+                            <h3 class="neon-magenta mb-3">Próximos Layouts em Desenvolvimento</h3>
+                            <p class="mb-4">Estou sempre trabalhando em novas soluções tecnológicas. Em breve, mais projetos inovadores serão adicionados ao portfólio!</p>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-laptop fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">Sites personalizados</h6>
+                                        <p class="small">Plataformas estáticas com perfil profissional</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-desktop fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">Design moderno e objetivo</h6>
+                                        <p class="small">Soluções de segurança avançada</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3">
+                                        <i class="fas fa-database fa-2x neon-cyan mb-2"></i>
+                                        <h6 class="neon-magenta">Integração com banco de dados</h6>
+                                        <p class="small">Modelagem e estruturação de dados</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <a href="#" class="btn btn-neon btn-lg me-3 mb-3" data-page="contact">
+                                    <i class="fas fa-lightbulb me-2"></i> Tem uma Ideia?
+                                </a>
+                                <a href="#" class="btn btn-outline-light btn-lg mb-3" data-page="services">
+                                    <i class="fas fa-cogs me-2"></i> Ver Serviços
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<style>
+    /* Estilos específicos para os cards de laptop */
+    .laptop-card {
+        background-color: rgba(26, 26, 46, 0.8);
+        border-radius: 15px;
+        padding: 20px;
+        height: 100%;
+        transition: all 0.3s;
+        border: 1px solid rgba(0, 240, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .laptop-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+        border-color: rgba(0, 240, 255, 0.3);
+    }
+    
+    .laptop-screen {
+        position: relative;
+        background: #111;
+        border-radius: 10px 10px 0 0;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: 2px solid #333;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    
+    .screen-content {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+    
+    .screen-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+    
+    .laptop-card:hover .screen-img {
+        transform: scale(1.05);
+    }
+    
+    .screen-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(5, 5, 5, 0.9));
+        padding: 15px;
+        color: white;
+    }
+    
+    .screen-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 5px;
+        pointer-events: none;
+    }
+    
+    .camera {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: #333;
+        border-radius: 50%;
+        border: 1px solid #555;
+    }
+    
+    .laptop-base {
+        background: #222;
+        border-radius: 0 0 10px 10px;
+        padding: 15px;
+        position: relative;
+        border: 2px solid #333;
+        border-top: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .keyboard {
+        background: #1a1a1a;
+        height: 20px;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .keyboard-keys {
+        position: absolute;
+        top: 4px;
+        left: 5%;
+        right: 5%;
+        height: 12px;
+        background: repeating-linear-gradient(
+            to right,
+            #333 0px,
+            #333 2px,
+            transparent 2px,
+            transparent 8px
+        );
+    }
+    
+    .touchpad {
+        width: 40%;
+        height: 8px;
+        background: #2a2a2a;
+        border-radius: 4px;
+        margin: 0 auto 10px;
+        border: 1px solid #444;
+    }
+    
+    .brand-logo {
+        text-align: center;
+        color: var(--cyber-cyan);
+        font-size: 0.7rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    
+    .laptop-content {
+        padding: 20px 10px 10px;
+    }
+    
+    .special-card {
+        border: 2px dashed rgba(0, 240, 255, 0.3);
+        background: rgba(45, 0, 75, 0.2);
+    }
+    
+    .special-card:hover {
+        border: 2px dashed var(--cyber-cyan);
+        background: rgba(45, 0, 75, 0.4);
+    }
+    
+    .laptop-icon {
+        animation: floatIcon 3s infinite alternate;
+    }
+    
+    @keyframes floatIcon {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-10px); }
+    }
+    
+    /* Responsividade para laptops */
+    @media (max-width: 768px) {
+        .screen-content {
+            height: 150px;
+        }
+        
+        .laptop-content {
+            padding: 15px 5px 5px;
+        }
+    }
+</style>
+        
+        <!-- Página Contato -->
+        <section id="contact" class="page-section">
+            <div class="contact-section">
+                <div class="container py-5">
+                    <div class="text-center mb-5 fade-in">
+                        <h2 class="display-4 fw-bold neon-cyan mb-3">ENTRE EM CONTATO</h2>
+                        <p class="lead">Pronto para transformar sua ideia em realidade? Entre em contato conosco!</p>
+                        <div class="mx-auto" style="height: 4px; width: 100px; background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-magenta));"></div>
+                    </div>
+                    
+                    <div class="row g-5">
+                        <div class="col-lg-6 fade-in">
+                            <h3 class="neon-cyan mb-4">Vamos Trabalhar Juntos</h3>
+                            <p class="mb-4">Tem um projeto em mente? Precisa de uma solução em TI? Entre em contato e vamos conversar sobre como podemos ajudar sua empresa a alcançar seus objetivos com tecnologia.</p>
+                            
+                            <div class="contact-info">
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="neon-magenta">E-mail</h5>
+                                        <p>cyberjaguar@gmail.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="neon-magenta">Telefone</h5>
+                                        <p>(62) 98120-9352</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="neon-magenta">Horário de Atendimento</h5>
+                                        <p>Segunda a Sexta: 9h às 18h</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-5">
+                                <h5 class="neon-cyan mb-3">Nossas Redes Sociais</h5>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Formulário -->
+                        <div class="col-lg-6 fade-in">
+                            <div class="service-card p-4">
+                                <h4 class="neon-cyan mb-4">Solicite um Orçamento</h4>
+                                <form class="contact-form" id="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="name" class="form-control" placeholder="Seu nome" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="email" name="email" class="form-control" placeholder="Seu e-mail" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="tel" name="phone" class="form-control" placeholder="Seu telefone (opcional)">
+                                        </div>
+                                    </div>
+                                    
+                                    <input type="text" name="subject" class="form-control" placeholder="Assunto" required>
+                                    
+                                    <select name="service_type" class="form-control" required>
+                                        <option value="" disabled selected>Selecione o tipo de serviço</option>
+                                        <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                                        <option value="Análise de dados">Análise de dados</option>
+                                        <option value="Segurança Cibernética">Segurança Cibernética</option>
+                                        <option value="Cloud Computing">Cloud Computing</option>
+                                        <option value="Hardware">Hardware</option>
+                                        <option value="Automação de tarefas">Automação de tarefas</option>
+                                        <option value="Software">Software</option>
+                                        <option value="Inteligência Artificial">Inteligência Artificial</option>
+                                        <option value="Redes">Redes</option>
+                                        <option value="Marketing Digital">Marketing Digital</option>
+                                        <option value="Consultoria em TI">Consultoria em TI</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                    
+                                    <textarea name="message" class="form-control" rows="5" placeholder="Descreva seu projeto ou dúvida" required></textarea>
+                                    
+                                    <div id="formMessage" class="mt-2" style="display: none;"></div>
+                                    
+                                    <div class="text-center mt-3">
+                                        <button type="submit" class="btn btn-neon px-5" id="submitBtn">
+                                            <i class="fas fa-paper-plane me-2"></i> Enviar Mensagem
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-logo">
+                        <i class="fas fa-user-ninja"></i> CYBER JAGUAR
+                    </div>
+                    <p class="mb-4">Soluções em Tecnologia da Informação para transformar seu negócio com inovação, segurança e performance.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-links">
+                        <h5>Links Rápidos</h5>
+                        <a href="#" data-page="home">Início</a>
+                        <a href="#" data-page="services">Serviços</a>
+                        <a href="#" data-page="about">Sobre</a>
+                        <a href="#" data-page="portfolio">Portfólio</a>
+                        <a href="#" data-page="contact">Contato</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Serviços</h5>
+                        <a href="#" data-page="services">Hardware</a>
+                        <a href="#" data-page="services">Software</a>
+                        <a href="#" data-page="services">Redes</a>
+                        <a href="#" data-page="services">Marketing Digital</a>
+                        <a href="#" data-page="services">Segurança Cibernética</a>
+                        <a href="#" data-page="services">Cloud Computing</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="footer-links">
+                        <h5>Contato</h5>
+                        <p><i class="fas fa-envelope me-2 neon-cyan"></i> cyberjaguar@gmail.com</p>
+                        <p><i class="fas fa-phone me-2 neon-cyan"></i> (62) 98120-9352</p>
+                        <p><i class="fas fa-map-marker-alt me-2 neon-cyan"></i> Goiânia, GO</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p class="mb-0">&copy; 2026 Cyber Jaguar - Soluções em T.I. Todos os direitos reservados.</p>
+                <p class="mt-2"><span class="neon-cyan fw-bold">Atualize sua realidade</span> - Transformando negócios com tecnologia de ponta.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sistema de navegação SPA (Single Page Application)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos da navegação
+            const navLinks = document.querySelectorAll('.nav-link, .btn[data-page]');
+            const pageSections = document.querySelectorAll('.page-section');
+            
+            // Função para mostrar uma página específica
+            function showPage(pageId) {
+                // Oculta todas as páginas
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostra a página selecionada
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+                
+                // Atualiza a navegação ativa
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Atualiza o hash da URL
+                window.location.hash = pageId;
+                
+                // Executa animações de entrada
+                setTimeout(() => {
+                    checkFadeInElements();
+                }, 100);
+            }
+            
+            // Configura os listeners de navegação
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const pageId = this.getAttribute('data-page') || 
+                                  this.getAttribute('href')?.substring(1);
+                    
+                    if (pageId) {
+                        showPage(pageId);
+                        
+                        // Fecha o menu mobile se estiver aberto
+                        const navbarCollapse = document.querySelector('.navbar-collapse.show');
+                        if (navbarCollapse) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            bsCollapse.hide();
+                        }
+                    }
+                });
+            });
+            
+            // Detecta a página inicial baseada no hash da URL
+            const initialPage = window.location.hash.substring(1) || 'home';
+            showPage(initialPage);
+            
+            // Configura o formulário de contato
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = document.getElementById('submitBtn');
+                    const originalText = submitBtn.innerHTML;
+                    const formMessage = document.getElementById('formMessage');
+                    
+                    // Mostra estado de carregamento
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando...';
+                    submitBtn.disabled = true;
+                    formMessage.style.display = 'none';
+                    
+                    // Coleta os dados do formulário
+                    const formData = new FormData(this);
+                    const data = {
+                        contact: {
+                            name: document.querySelector('[name="name"]').value,
+                            email: document.querySelector('[name="email"]').value,
+                            subject: document.querySelector('[name="subject"]').value,
+                            service_type: document.querySelector('[name="service_type"]').value,
+                            message: document.querySelector('[name="message"]').value
+                        }
+                    };
+                    
+                    
+                    fetch('/api/v1/contacts', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                    })
+                    
+                    
+                    try {
+                        // URL do seu backend Rails (ajuste conforme necessário)
+                        const backendURL = 'http://localhost:3000/api/v1/contacts';
+                        
+                        const response = await fetch(backendURL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            // Sucesso
+                            formMessage.innerHTML = '<div class="alert alert-success">' + result.message + '</div>';
+                            formMessage.style.display = 'block';
+                            this.reset();
+                            
+                            // Feedback visual
+                            submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Enviado com sucesso!';
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                            }, 2000);
+                        } else {
+                            // Erro do servidor
+                            const errorMsg = result.errors ? result.errors.join(', ') : result.message;
+                            formMessage.innerHTML = '<div class="alert alert-danger">Erro: ' + errorMsg + '</div>';
+                            formMessage.style.display = 'block';
+                            submitBtn.innerHTML = originalText;
+                        }
+                    } catch (error) {
+                        // Erro de conexão
+                        console.error('Erro:', error);
+                        formMessage.innerHTML = '<div class="alert alert-danger">Erro de conexão com o servidor. Tente novamente mais tarde.</div>';
+                        formMessage.style.display = 'block';
+                        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i> Erro - Tente novamente';
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                        }, 3000);
+                    } finally {
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+            
+            // Animação de elementos ao rolar
+            function checkFadeInElements() {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                const windowHeight = window.innerHeight;
+                
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Executa a verificação inicial
+            checkFadeInElements();
+            
+            // Executa a verificação ao rolar
+            window.addEventListener('scroll', checkFadeInElements);
+            
+            // Cria partículas de fundo
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Tamanho aleatório
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Posição aleatória
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Cor aleatória (ciano ou magenta)
+                    const colors = ['var(--cyber-cyan)', 'var(--cyber-magenta)'];
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Atraso de animação aleatório
+                    particle.style.animationDelay = `${Math.random() * 15}s`;
+                    
+                    // Duração de animação aleatória
+                    particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+            
+            // Detecta mudanças no hash (botões voltar/avançar do navegador)
+            window.addEventListener('hashchange', function() {
+                const pageId = window.location.hash.substring(1) || 'home';
+                showPage(pageId);
+            });
+        });
+    </script>
+</body>
+</html>
