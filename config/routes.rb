@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     end
   end
   
+
+  get '/health', to: 'health#index'
+
   # Rota fallback para Single Page Application
   get '*path', to: 'pages#index', constraints: ->(req) do
     !req.xhr? && req.format.html?
