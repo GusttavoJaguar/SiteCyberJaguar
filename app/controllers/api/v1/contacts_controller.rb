@@ -40,6 +40,7 @@ module Api
           Time.now.strftime("%Y-%m-%d %H:%M:%S"),
           contact[:name].to_s.gsub(',', ''),
           contact[:email],
+          contact[:phone],
           contact[:subject].to_s.gsub(',', ''),
           contact[:service_type].to_s.gsub(',', ''),
           contact[:message].to_s.gsub(',', '').gsub("\n", ' ')
