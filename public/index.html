@@ -1937,59 +1937,83 @@
                         }
                     };
                     
+               //CORREÇÃO COMEÇA AQUI      
+                   try {
+                // Detecta se está em localhost ou produção
+                const isLocal = window.location.hostname.includes('localhost') || 
+                               window.location.hostname === '127.0.0.1';
+                
+                // Define a URL base dinamicamente
+                let backendURL;
+                
+                if (isLocal) {
+                    // Para desenvolvimento local
+                    backendURL = 'http://localhost:3000/api/v1/contacts';
+                } else {
+                    // Para produção (Render.com)
+                    // IMPORTANTE: Substitua pela URL REAL do seu backend no Render
+                    backendURL = 'https://seu-backend-no-render.onrender.com/api/v1/contacts';
                     
-                    fetch('/api/v1/contacts', {
+                    // Se estiver no mesmo domínio (Render), pode usar caminho relativo:
+                    // backendURL = '/api/v1/contacts';
+                }
+                
+                // Configuração do fetch com CORS
+                const response = await fetch(backendURL, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
-                    })
-                    
-                    
-                    try {
-                        // URL do seu backend Rails (ajuste conforme necessário)
-                        const backendURL = 'http://localhost:3000/api/v1/contacts';
-                        
-                        const response = await fetch(backendURL, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (response.ok) {
-                            // Sucesso
-                            formMessage.innerHTML = '<div class="alert alert-success">' + result.message + '</div>';
-                            formMessage.style.display = 'block';
-                            this.reset();
-                            
-                            // Feedback visual
-                            submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Enviado com sucesso!';
-                            setTimeout(() => {
-                                submitBtn.innerHTML = originalText;
-                            }, 2000);
-                        } else {
-                            // Erro do servidor
-                            const errorMsg = result.errors ? result.errors.join(', ') : result.message;
-                            formMessage.innerHTML = '<div class="alert alert-danger">Erro: ' + errorMsg + '</div>';
-                            formMessage.style.display = 'block';
-                            submitBtn.innerHTML = originalText;
-                        }
-                    } catch (error) {
-                        // Erro de conexão
-                        console.error('Erro:', error);
-                        formMessage.innerHTML = '<div class="alert alert-danger">Erro de conexão com o servidor. Tente novamente mais tarde.</div>';
-                        formMessage.style.display = 'block';
-                        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i> Erro - Tente novamente';
-                        setTimeout(() => {
-                            submitBtn.innerHTML = originalText;
-                        }, 3000);
-                    } finally {
-                        submitBtn.disabled = false;
-                    }
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                    // Para desenvolvimento local com CORS
+                    mode: isLocal ? 'cors' : 'same-origin',
+                    credentials: isLocal ? 'omit' : 'same-origin'
+                });
+                
+                // Verifica se a resposta foi bem-sucedida
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                // Sucesso
+                formMessage.innerHTML = '<div class="alert alert-success">' + 
+                    (result.message || 'Mensagem enviada com sucesso!') + 
+                    '</div>';
+                formMessage.style.display = 'block';
+                this.reset();
+                
+                // Feedback visual
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Enviado com sucesso!';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Erro detalhado:', error);
+                
+                // Mensagem mais específica baseada no tipo de erro
+                let errorMessage = 'Erro de conexão com o servidor. Tente novamente mais tarde.';
+                
+                if (error.message.includes('Failed to fetch')) {
+                    errorMessage = 'Não foi possível conectar ao servidor. Verifique sua conexão de internet.';
+                } else if (error.message.includes('CORS')) {
+                    errorMessage = 'Erro de configuração do servidor. Contate o administrador.';
+                } else if (error.message.includes('status: 404')) {
+                    errorMessage = 'Serviço não encontrado. A URL do servidor pode estar incorreta.';
+                }
+                
+                formMessage.innerHTML = '<div class="alert alert-danger">' + errorMessage + '</div>';
+                formMessage.style.display = 'block';
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i> Erro - Tente novamente';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                }, 3000);
+            } finally {
+                submitBtn.disabled = false;
+            }
                 });
             }
             
