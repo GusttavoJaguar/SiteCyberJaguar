@@ -7,7 +7,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins '*'  # Em produção, especifique seu domínio
     
-    resource '*',
+    resource '/api/v1/contacts',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       expose: ['Authorization'],

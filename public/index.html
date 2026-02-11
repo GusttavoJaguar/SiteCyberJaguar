@@ -1938,27 +1938,13 @@
                     };
                     
 //CORREÇÃO COMEÇA AQUI      
-                   try {
-                // Detecta se está em localhost ou produção
-                const isLocal = window.location.hostname.includes('localhost') || 
-                               window.location.hostname === '127.0.0.1';
+            try {
+                const backendURL = 'https://seu-backend-rails.onrender.com/api/v1/contacts';
                 
-                // Define a URL base dinamicamente
-                let backendURL;
+                // Use Proxy no Render para evitar CORS
+                // Se estiver no Render, use caminho relativo:
+                // const backendURL = '/api/v1/contacts';
                 
-                if (isLocal) {
-                    // Para desenvolvimento local
-                    backendURL = 'http://localhost:3000/api/v1/contacts';
-                } else {
-                    // Para produção (Render.com)
-                    // IMPORTANTE: Substitua pela URL REAL do seu backend no Render
-                    backendURL = 'https://sitecyberjaguar.onrender.com/api/v1/contacts';
-                    
-                    // Se estiver no mesmo domínio (Render), pode usar caminho relativo:
-                    // backendURL = '/api/v1/contacts';
-                }
-                
-                // Configuração do fetch com CORS
                 const response = await fetch(backendURL, {
                     method: 'POST',
                     headers: {
@@ -1966,14 +1952,16 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify(data),
-                    // Para desenvolvimento local com CORS
-                    mode: isLocal ? 'cors' : 'same-origin',
-                    credentials: isLocal ? 'omit' : 'same-origin'
+                    mode: 'cors',  // IMPORTANTE: Usar 'cors'
+                    credentials: 'omit'  // IMPORTANTE: Sem credenciais
                 });
                 
-                // Verifica se a resposta foi bem-sucedida
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    // Se der erro 500, mostra mensagem específica
+                    if (response.status === 500) {
+                        throw new Error('Erro interno no servidor (500). O email pode não estar configurado.');
+                    }
+                    throw new Error(`Erro ${response.status}: ${response.statusText}`);
                 }
                 
                 const result = await response.json();
