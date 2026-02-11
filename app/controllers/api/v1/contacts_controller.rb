@@ -18,5 +18,7 @@ module Api
       else
         render json: { errors: @contact.errors.full_messages }, status: :unprocessable_entity
       end
+
+    end  
   end
 end
