@@ -5,37 +5,19 @@ module Api
       skip_before_action :verify_authenticity_token
       
       def create
-       @contact = Contact.new(contact_params)
-  
-        if @contact.save
-          # Tenta enviar email mas não falha se der timeout
-          begin
-            # Timeout de 3 segundos máximo
-            Timeout.timeout(3) do
-              ContactMailer.new_contact(@contact).deliver_now
-            end
-          rescue Timeout::Error => e
-            Rails.logger.warn "Email timeout (ignorado): #{e.message}"
-          rescue => e
-            Rails.logger.error "Email error (ignorado): #{e.message}"
-          end
-          
-          # SEMPRE retorna sucesso, mesmo se email falhar
-          render json: { 
-            message: 'Mensagem recebida com sucesso! Entrarei em contato em breve.',
-            contact: @contact 
-          }, status: :created
-        else
-          render json: { errors: @contact.errors.full_messages }, status: :unprocessable_entity
-        end
-      end
-      
-       private
-  
-        def contact_params
-          params.require(:contact).permit(:name, :email, :phone, :subject, :service_type, :message)
-        end
-      end
+      @contact = Contact.new(
+      name: params[:contact][:name],
+      email: params[:contact][:email],
+      subject: params[:contact][:subject],
+      service_type: params[:contact][:service_type],
+      message: params[:contact][:message]
+    )
 
+      if @contact.save
+        render json: { message: 'Sucesso!' }, status: :created
+      else
+        render json: { errors: @contact.errors.full_messages }, status: :unprocessable_entity
+      end
     end
   end
+end
